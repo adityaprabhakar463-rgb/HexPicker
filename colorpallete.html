@@ -1,0 +1,137 @@
+<!--Create palette.html + palette.js
+
+The page shows:
+- A "Generate" button that creates a palette of 5 random colors
+- Each color displayed as a box showing:
+  - The color as the background
+  - The hex code written on it
+  - Click the hex code to copy it to clipboard
+- A "Lock" button on each color box
+  - Locked colors don't change when Generate is clicked
+  - Locked colors show a different icon/style
+- Palette is saved to localStorage
+  - Refreshing keeps your last generated palette
+
+No libraries. No frameworks.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Pallete Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ff7f50;
+            background-image: radial-gradient(circle at 10% 20%, #ff7f50, transparent), radial-gradient(circle at 80% 80%, #4f46e5, transparent);
+        }
+
+        #Pallete {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            width: 580px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .Colors {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .BoxesRow,
+        .LabelsRow,
+        .LocksRow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            align-items: center;
+        }
+
+        .Box {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            border: 1px solid #dadce0;
+            transition: transform 0.2s;
+        }
+
+        .Box:hover { transform: translateY(-2px); }
+
+        .Label {
+            margin-top: 6px;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 700;
+            color: #162535;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .Lock {
+            margin-top: 4px;
+            width: 100%;
+            font-size: 12px;
+            padding: 6px;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            background: #5d96ff;
+            cursor: pointer;
+        }
+
+        .Lock.locked { background: #ff7f50; }
+
+        #Generate {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #4f46e5;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #Generate:hover { background: #3730a3; }
+    </style>
+</head>
+<body>
+    <div id = "Pallete">
+        <div class = "Colors">
+            <div class="BoxesRow">
+                <div class="Box"></div>
+                <div class="Box"></div>
+                <div class="Box"></div>
+                <div class="Box"></div>
+                <div class="Box"></div>
+            </div>
+            <div class="LabelsRow">
+                <div class="Label"></div>
+                <div class="Label"></div>
+                <div class="Label"></div>
+                <div class="Label"></div>
+                <div class="Label"></div>
+            </div>
+            <div class="LocksRow">
+                <button class="Lock">Lock</button>
+                <button class="Lock">Lock</button>
+                <button class="Lock">Lock</button>
+                <button class="Lock">Lock</button>
+                <button class="Lock">Lock</button>
+            </div>
+        </div>
+        <button id = "Generate">Generate</button>
+    </div>
+    <script src="colorpallete.js"></script>
+</body>
+</html>
